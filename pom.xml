@@ -153,7 +153,7 @@
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                         </exclude>
-                        <mainClass>cn.huiounet.springbootsecurityactivemq.SpringbootSecurityActivemqApplication</mainClass>
+<!--                        <mainClass>cn.huiounet.springbootsecurityactivemq.SpringbootSecurityActivemqApplication</mainClass>-->
                     </excludes>
                 </configuration>
             </plugin>
