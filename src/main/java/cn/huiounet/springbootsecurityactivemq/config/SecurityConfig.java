@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(myAuthenticationSuccessHandler)
                 .failureHandler(myAuthenticationFailHander)
                 .loginProcessingUrl("/form")
-               // .defaultSuccessUrl("/index.html") //成功登陆后跳转页面
+                .defaultSuccessUrl("/index.html") //成功登陆后跳转页面
                 //.failureUrl("/loginError.html")
                 .permitAll()
                 .and();

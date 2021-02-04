@@ -3,6 +3,7 @@ package cn.huiounet.springbootsecurityactivemq.service.impl;
 
 import cn.huiounet.springbootsecurityactivemq.pojo.User;
 import cn.huiounet.springbootsecurityactivemq.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 @Component
 public class MyUserDetailsService implements UserDetailsService {
+    private static final Logger logger = Logger.getLogger(MyUserDetailsService.class);
     @Autowired
     private UserService userService;
 
@@ -36,9 +38,13 @@ public class MyUserDetailsService implements UserDetailsService {
         String role = sysUser.getRole();
         // 角色集合
         List<GrantedAuthority> authorities = new ArrayList<>();
+
         // 角色必须以`ROLE_`开头，数据库中没有，则在这里加
         authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+        org.springframework.security.core.userdetails.User user = new org.springframework.security.core.userdetails.User(username, sysUser.getPassword(), authorities);
 
-        return new org.springframework.security.core.userdetails.User(username, sysUser.getPassword(), authorities);
+        logger.info(user.toString());
+        return user ;
+
     }
 }
